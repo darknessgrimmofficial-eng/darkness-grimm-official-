@@ -1,0 +1,27 @@
+{
+  "site": {
+    "name": "Darkness Grimm Official",
+    "title": "DARKNESS GRIMM",
+    "tagline": "Enter a world where every shadow has a story. Horror, thriller and mystery tales made for the brave.",
+    "announcement": "The official channel",
+    "accent": "#e11919",
+    "youtube": "https://www.youtube.com/@DarknessGrimmOfficial",
+    "aboutHeading": "Stories that follow you home.",
+    "about": "Darkness Grimm Official is your destination for eerie tales, pulse-racing thrillers and unsettling mysteries. Turn down the lights, press play, and let the night begin.",
+    "joinHeading": "The next story is waiting.",
+    "joinText": "Subscribe to Darkness Grimm Official and be first to enter every new nightmare.",
+    "footer": "Horror · Thriller · Mystery"
+  },
+  "socials": {"YouTube":"https://www.youtube.com/@DarknessGrimmOfficial","Instagram":"","X":"","Email":"mailto:darknessgrimmofficial@gmail.com"},
+  "genres": [
+    {"id":"horror","name":"Horror","description":"Ghostly encounters, cursed places and the fear that lives after dark."},
+    {"id":"thriller","name":"Thriller","description":"Unpredictable turns, hidden motives and danger at every corner."},
+    {"id":"mystery","name":"Mystery","description":"Follow the clues. Question everything. Nothing is ever quite what it seems."}
+  ],
+  "videos": [
+    {"id":"video-01","title":"Video 01","url":"https://youtu.be/uIhY-i8_W5g?si=qUiOFTHxS-0P6aF4","thumbnail":"","description":"Enter the darkness.","genre":"Horror","status":"published","order":1},
+    {"id":"video-02","title":"Video 02","url":"https://youtu.be/VkKedmwEvfk?si=GAMEucRxBGhPPULd","thumbnail":"","description":"The story continues.","genre":"Thriller","status":"published","order":2},
+    {"id":"video-03","title":"Video 03","url":"https://youtu.be/wHINXcqc64M?si=kXSFoZ63XslAgDzW","thumbnail":"","description":"Something is watching.","genre":"Mystery","status":"published","order":3},
+    {"id":"video-04","title":"Video 04","url":"https://youtu.be/wK2L3c6W5Wc?si=7lpUvksmkH3Kkkr7","thumbnail":"","description":"Fear has no ending.","genre":"Horror","status":"published","order":4}
+  ]
+}
