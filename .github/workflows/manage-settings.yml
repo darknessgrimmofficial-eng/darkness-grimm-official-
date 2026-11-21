@@ -1,0 +1,15 @@
+name: Manage website settings
+on:
+  workflow_dispatch:
+    inputs:
+      field: {description: 'Choose the item to change', required: true, type: choice, options: [name, title, tagline, announcement, accent, youtube, aboutHeading, about, joinHeading, joinText, footer, social.YouTube, social.Instagram, social.X, social.Email]}
+      value: {description: 'New text, link, or colour code such as #e11919', required: true, type: string}
+permissions: {contents: write}
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python .github/scripts/manage_settings.py --field "$FIELD" --value "$VALUE"
+        env: {FIELD: ${{ inputs.field }}, VALUE: ${{ inputs.value }}}
+      - run: git config user.name "Darkness Grimm Content Bot" && git config user.email "41898282+github-actions[bot]@users.noreply.github.com" && git add data/site.json && git diff --cached --quiet || (git commit -m "Update website settings" && git push)
