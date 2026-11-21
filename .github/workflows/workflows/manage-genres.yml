@@ -1,0 +1,17 @@
+name: Manage genres
+on:
+  workflow_dispatch:
+    inputs:
+      action: {description: 'Choose add, update, or delete', required: true, type: choice, options: [add, update, delete]}
+      id: {description: 'Genre ID: for add, use a short ID such as supernatural; for update/delete, use the existing ID', required: false, type: string}
+      name: {description: 'Genre display name', required: false, type: string}
+      description: {description: 'Genre description', required: false, type: string}
+permissions: {contents: write}
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python .github/scripts/manage_genres.py --action "$ACTION" --id "$ID" --name "$NAME" --description "$DESCRIPTION"
+        env: {ACTION: ${{ inputs.action }}, ID: ${{ inputs.id }}, NAME: ${{ inputs.name }}, DESCRIPTION: ${{ inputs.description }}}
+      - run: git config user.name "Darkness Grimm Content Bot" && git config user.email "41898282+github-actions[bot]@users.noreply.github.com" && git add data/site.json && git diff --cached --quiet || (git commit -m "Update genres" && git push)

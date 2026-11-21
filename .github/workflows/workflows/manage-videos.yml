@@ -1,0 +1,32 @@
+name: Manage videos
+on:
+  workflow_dispatch:
+    inputs:
+      action: {description: 'Choose add, update, hide, show, delete or feature', required: true, type: choice, options: [add, update, hide, show, delete, feature]}
+      id: {description: 'Video ID. For add: a short unique ID like night-story-01.', required: false, type: string}
+      title: {description: 'Video title (add/update)', required: false, type: string}
+      url: {description: 'YouTube or video link (add/update)', required: false, type: string}
+      thumbnail: {description: 'Optional poster/thumbnail image URL', required: false, type: string}
+      description: {description: 'Short video description (add/update)', required: false, type: string}
+      genre: {description: 'Genre name, exactly as shown on the site', required: false, type: string}
+      status: {description: 'published or hidden (add/update)', required: false, type: string}
+      order: {description: 'Number: 1 shows first', required: false, type: string}
+permissions: {contents: write}
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update content
+        run: python .github/scripts/manage_videos.py --action "$ACTION" --id "$ID" --title "$TITLE" --url "$URL" --thumbnail "$THUMBNAIL" --description "$DESCRIPTION" --genre "$GENRE" --status "$STATUS" --order "$ORDER"
+        env:
+          ACTION: ${{ inputs.action }}
+          ID: ${{ inputs.id }}
+          TITLE: ${{ inputs.title }}
+          URL: ${{ inputs.url }}
+          THUMBNAIL: ${{ inputs.thumbnail }}
+          DESCRIPTION: ${{ inputs.description }}
+          GENRE: ${{ inputs.genre }}
+          STATUS: ${{ inputs.status }}
+          ORDER: ${{ inputs.order }}
+      - run: git config user.name "Darkness Grimm Content Bot" && git config user.email "41898282+github-actions[bot]@users.noreply.github.com" && git add data/site.json && git diff --cached --quiet || (git commit -m "Update videos" && git push)
